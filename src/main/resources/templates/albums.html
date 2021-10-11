@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Album</title>
@@ -9,8 +9,25 @@
 <h1 class="title">
   Your Best Albums !
 </h1>
+
+<div>
+
+  <form action="/albums" method="post">
+
+    <p>Title</p><input type="text" name="title"/></br>
+
+    <p>Artist</p><input type="text" name="artist"/></br>
+    <p>Number OF Song</p><input type="text" name="songCount"/></br>
+    <p>length</p><input type="text" name="length"/></br>
+    <p>img</p><input type="text" name="imageUrl"/></br>
+
+
+    <button type="submit">Submit</button>
+
+  </form>
+</div>
 <main>
-  <div th:each=" album : ${Albums}" class="albums">
+  <div th:each=" album : ${albums}" class="albums">
     <p> Title : <span th:text ="${album.title}"></span></p>
       <p> Artist  : <span th:text ="${album.artist }"></span></p>
       <p> Number OF Song : <span th:text ="${album.songCount}"></span></p>
