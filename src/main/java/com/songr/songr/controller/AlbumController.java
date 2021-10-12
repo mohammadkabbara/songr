@@ -8,6 +8,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.view.RedirectView;
 
 import java.util.ArrayList;
@@ -31,16 +32,18 @@ public class AlbumController {
 //}
 
     @Autowired
-    AlbumsRepository albumsRepository;
+    AlbumsRepository albumsRepository ;
     @GetMapping("/albums")
-    public String getAlbum(Model model){
-        model.addAttribute("albums" , albumsRepository.findAll());
+    public String albumController (Model model) {
+        model.addAttribute("albums", albumsRepository.findAll());
         return "albums.html";
     }
 
-    @PostMapping("/albums")
-    public RedirectView addUserData(@ModelAttribute Album album ){
-//        model.addAttribute("albums" , album);
+    @PostMapping("/addAlbum")
+    public RedirectView  addFormData (@RequestParam("title") String title ,@RequestParam ("artist") String artist,
+                                      @RequestParam("songCount") int songCount,
+                                      @RequestParam("length")int length ,@RequestParam("imageUrl") String imageUrl){
+      Album album = new Album(title , artist , songCount ,length , imageUrl);
         albumsRepository.save(album);
         return new RedirectView("/albums");
     }

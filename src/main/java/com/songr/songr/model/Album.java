@@ -15,7 +15,8 @@ public class Album {
     private int length;
     private String imageUrl;
 
-
+    public Album (){
+    }
     public Album(String title, String artist, int songCount, int length, String imageUrl) {
         this.title = title;
         this.artist = artist;
@@ -27,8 +28,6 @@ public class Album {
     public Long getId() {
         return id;
     }
-
-
 
     public String getTitle() {
         return title;
