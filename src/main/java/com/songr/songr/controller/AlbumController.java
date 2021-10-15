@@ -1,6 +1,7 @@
 package com.songr.songr.controller;
 
-import com.songr.songr.model.Album;
+//import com.songr.songr.model.Album;
+import com.songr.songr.model.Albums;
 import com.songr.songr.repository.AlbumsRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -36,16 +37,22 @@ public class AlbumController {
     @GetMapping("/albums")
     public String albumController (Model model) {
         model.addAttribute("albums", albumsRepository.findAll());
-        return "albums.html";
+        return "Albums.html";
     }
 
-    @PostMapping("/addAlbum")
-    public RedirectView  addFormData (@RequestParam("title") String title ,@RequestParam ("artist") String artist,
-                                      @RequestParam("songCount") int songCount,
-                                      @RequestParam("length")int length ,@RequestParam("imageUrl") String imageUrl){
-      Album album = new Album(title , artist , songCount ,length , imageUrl);
-        albumsRepository.save(album);
-        return new RedirectView("/albums");
-    }
+//    @PostMapping("/addAlbum")
+//    public RedirectView  addFormData (@RequestParam("title") String title ,@RequestParam ("artist") String artist,
+//                                      @RequestParam("songCount") int songCount,
+//                                      @RequestParam("length")int length ,@RequestParam("imageUrl") String imageUrl){
+//        Album album = new Album(title , artist , songCount ,length , imageUrl);
+//        albumsRepository.save(album);
+//        return new RedirectView("/albums");
+//    }
+@PostMapping("/addAlbum")
+public RedirectView  addFormData (@ModelAttribute Albums album , Model model){
+    model.addAttribute("album" , album);
+    albumsRepository.save(album);
+    return new RedirectView("/albums");
+}
 
 }

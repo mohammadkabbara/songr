@@ -1,5 +1,4 @@
 package com.songr.songr.model;
-
 import javax.persistence.*;
 
 @Entity
@@ -7,21 +6,20 @@ public class Song  {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id ;
-
     private String title ;
     private int length ;
     private int trackNumber ;
 
-    public Album getAlbums() {
+    public Albums getAlbums() {
         return albums;
     }
 
-    public void setAlbums(Album albums) {
+    public void setAlbums(Albums albums) {
         this.albums = albums;
     }
 
     @ManyToOne
-    private Album albums;
+    private Albums albums;
 
     public Song(){
     }
