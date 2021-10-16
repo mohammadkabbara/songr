@@ -10,6 +10,10 @@ public class Song  {
     private int length ;
     private int trackNumber ;
 
+    public Song(String thank_you_allah, int i, int i1, Albums testAlbum) {
+    }
+
+
     public Albums getAlbums() {
         return albums;
     }
